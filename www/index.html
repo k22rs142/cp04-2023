@@ -39,8 +39,12 @@
             btnCClick(e);
         });
 
-         $('#btnD').click(function(e) {
+        $('#btnD').click(function(e) {
             btnDClick(e);
+        });
+
+        $('#btnE').click(function(e) {
+            btnEClick(e);
         });
         init();
     });
@@ -157,6 +161,7 @@
     var active = false;
     var startTime = 0;
     var period = 0;
+    var mode = 0;
 
 
     
@@ -166,6 +171,7 @@
         $('#btnB').prop('disabled', false);
         $('#btnC').prop('disabled', false);
         $('#btnD').prop('disabled', false);
+        $('#btnE').prop('disabled', false);
         
     }
 
@@ -189,13 +195,23 @@
     function btnAClick(e){
         active = true;
         startTime = new Date();
-        
-    }
 
+        $("#btnA").css("background-color","white");
+        $("#btnB").css("background-color","yellow");
+        $("#btnC").css("background-color","white");
+        $("#btnD").css("background-color","white");
+    }
+    
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
       active = false;
-      tmp = time;
+      
+      
+      
+      $("#btnA").css("background-color","white");
+      $("#btnB").css("background-color","white");
+      $("#btnC").css("background-color","yellow");
+      $("#btnD").css("background-color","yellow");
         
         
     }
@@ -207,6 +223,13 @@
         period = 60* parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
         $("#time").html("経過時間: 0");
         $("#remain").html("残り時間: " + period);
+
+        $("#btnA").css("background-color","yellow");
+        $("#btnB").css("background-color","white");
+        $("#btnC").css("background-color","white");
+        $("#btnD").css("background-color","white");
+
+
         
     }
     //ButtonDがクリックされた時の処理
@@ -216,7 +239,20 @@
         $("#time").html("経過時間: 0");
         $("#remain").html("残り時間: " + period);
 
+        $("#btnA").css("background-color","yellow");
+        $("#btnB").css("background-color","white");
+        $("#btnC").css("background-color","white");
+        $("#btnD").css("background-color","white");
         
+    }
+    function btnEClick(e){
+        if(mode == 0){
+        $("body").css("background-color","green");
+        mode += 1;
+        }else{
+        $("body").css("background-color","skyblue");    
+        mode = 0;
+        }
     }
 
     
@@ -257,7 +293,8 @@
     <button id="btnA">Start</button>  
     <button id="btnB">Stop</button>
     <button id="btnC">Set</button>  
-    <button id="btnD">3minutes</button> 
+    <button id="btnD">3minutes</button>
+    <button id="btnE">Change</button> 
     <input type="number" id="minute" value=0 >
     <input type="number" id="second" value=15 >
 </body>
